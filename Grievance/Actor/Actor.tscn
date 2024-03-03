@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7gcwv4f82j1e"]
+
+[ext_resource type="Script" path="res://Actor/Actor.gd" id="1_a66sm"]
+[ext_resource type="Texture2D" uid="uid://cujbw26wb5bux" path="res://Actor/sprite.png" id="2_b3jbg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0cuwv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t4wfk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b3jbg")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Actor" type="CharacterBody2D"]
+script = ExtResource("1_a66sm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0cuwv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t4wfk")
+animation = &"Idle"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.6, 1.6)

@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkoqhwo7bma1v"]
+
+[ext_resource type="PackedScene" uid="uid://c7gcwv4f82j1e" path="res://Actor/Actor.tscn" id="1_s58ia"]
+[ext_resource type="PackedScene" uid="uid://cyc7klt1jswh7" path="res://Background/parallax_background.tscn" id="2_q1a3w"]
+[ext_resource type="Texture2D" uid="uid://csasyugxgvc7s" path="res://Free Pixel Art Forest/PNG/Background layers/Layer_0002_7.png" id="3_f5fxh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4322s"]
+size = Vector2(2894, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8bhd"]
+size = Vector2(108, 346.5)
+
+[node name="InitialWorld" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_s58ia")]
+position = Vector2(41, 497)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1442, 539)
+shape = SubResource("RectangleShape2D_4322s")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-39, 409)
+shape = SubResource("RectangleShape2D_n8bhd")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2851, 373)
+shape = SubResource("RectangleShape2D_n8bhd")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_q1a3w")]
+
+[node name="Layer00027" type="Sprite2D" parent="."]
+position = Vector2(-443, 505)
+scale = Vector2(1, 1.2686)
+texture = ExtResource("3_f5fxh")
