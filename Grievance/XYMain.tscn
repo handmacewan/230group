@@ -7,6 +7,3 @@
 script = ExtResource("1_h3egf")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_oaiuq")]
-
-[connection signal="QuitGame" from="MainMenu" to="." method="OnMainMenuQuitGame"]
-[connection signal="StartGame" from="MainMenu" to="." method="OnMainMenuStartGame"]

@@ -20,7 +20,7 @@ async public void OnStartButtonPressed()
 	var fadeAnimation = GetNode<AnimationPlayer>("AnimationPlayer");
 	fadeAnimation.Play("MenuFadeBlack");
 	await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
-	
+	GetTree().ChangeSceneToFile("res://Scenes/Level0.tscn");
 }
 
 

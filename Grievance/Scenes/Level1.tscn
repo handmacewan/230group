@@ -1,3 +1,25 @@
-[gd_scene format=3 uid="uid://dhqxq3k6lnp6b"]
+[gd_scene load_steps=4 format=3 uid="uid://c32oiah77lhbs"]
 
-[node name="Level1" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://r0kab7o5khtn" path="res://Scenes/Player.tscn" id="1_xyaeg"]
+[ext_resource type="Texture2D" uid="uid://5n1tvg8twal0" path="res://Img/goal.png" id="2_buas0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2xg3j"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharBody2D" parent="." instance=ExtResource("1_xyaeg")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-445, -206, -445, 193, -234, 193, -234, 97, 205, 97, 205, 191, 501, 191, 498, -241, 365, -239, 365, -119, -437, -119, -437, -377, 694, -385, 698, 416, -635, 402, -638, -376)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(787, -138)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("2_buas0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2xg3j")
