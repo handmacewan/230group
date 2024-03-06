@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2reoo4t5gsx0"]
+
+[ext_resource type="Script" path="res://XYMain.cs" id="1_h3egf"]
+[ext_resource type="PackedScene" uid="uid://c8jlf4nfk7f0i" path="res://Scenes/MenuNode.tscn" id="2_oaiuq"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_h3egf")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_oaiuq")]
+
+[connection signal="QuitGame" from="MainMenu" to="." method="OnMainMenuQuitGame"]
+[connection signal="StartGame" from="MainMenu" to="." method="OnMainMenuStartGame"]
