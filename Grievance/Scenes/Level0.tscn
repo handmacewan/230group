@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhqxq3k6lnp6b"]
+
+[ext_resource type="Script" path="res://Scenes/Level0.cs" id="1_asost"]
+[ext_resource type="Texture2D" uid="uid://du2jxwnl57mpm" path="res://Img/Level0.png" id="1_nhmsb"]
+[ext_resource type="PackedScene" uid="uid://r0kab7o5khtn" path="res://Scenes/Player.tscn" id="2_fywko"]
+[ext_resource type="Texture2D" uid="uid://5n1tvg8twal0" path="res://Img/goal.png" id="3_e6tvo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4r40h"]
+
+[node name="Level0" type="Node2D"]
+script = ExtResource("1_asost")
+
+[node name="PlayAreaSprite" type="Sprite2D" parent="."]
+position = Vector2(1062, 247)
+texture = ExtResource("1_nhmsb")
+
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(1023, 371)
+collision_layer = 0
+collision_mask = 128
+metadata/_edit_group_ = true
+
+[node name="GoalSprite" type="Sprite2D" parent="Goal"]
+texture = ExtResource("3_e6tvo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource("CircleShape2D_4r40h")
+
+[node name="Player" parent="." instance=ExtResource("2_fywko")]
+position = Vector2(640, 360)
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(229, 283, 231, 456, 1086, 456, 1086, 281, 1223, 281, 1223, 584, 116, 586, 116, 128, 1225, 130, 1234, 281)
+
+[connection signal="body_entered" from="Goal" to="." method="OnGoalBodyEntered"]

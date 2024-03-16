@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8jlf4nfk7f0i"]
+
+[ext_resource type="Script" path="res://Scenes/MenuNode.cs" id="1_878ek"]
+
+[sub_resource type="Animation" id="Animation_xfgus"]
+resource_name = "MenuFadeBlack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6udc4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kkomm"]
+_data = {
+"MenuFadeBlack": SubResource("Animation_xfgus"),
+"RESET": SubResource("Animation_6udc4")
+}
+
+[node name="Node" type="Node"]
+script = ExtResource("1_878ek")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 185.0
+offset_top = 611.0
+offset_right = 410.0
+offset_bottom = 686.0
+theme_override_font_sizes/font_size = 25
+text = "Start."
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 500.0
+offset_top = 611.0
+offset_right = 725.0
+offset_bottom = 686.0
+theme_override_font_sizes/font_size = 25
+text = "Quit."
+
+[node name="TitleLabel" type="Label" parent="."]
+offset_left = 34.0
+offset_top = 461.0
+offset_right = 291.0
+offset_bottom = 530.0
+theme_override_font_sizes/font_size = 50
+text = "Grievance."
+
+[node name="BlackScreen" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../BlackScreen")
+libraries = {
+"": SubResource("AnimationLibrary_kkomm")
+}
+
+[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="QuitButton" to="." method="OnQuitButtonPressed"]
