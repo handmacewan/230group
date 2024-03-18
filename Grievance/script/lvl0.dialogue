@@ -1,0 +1,210 @@
+~ tutorial0
+
+Tutorial: Use the Arrow keys to move. And Enter,Space Bar, or Left Click to interact or confirm.
+Tutorial: You'll need to talk to the person to the right to proceed.
+Tutorial: Overcome each stage to reach the end.
+=> END
+
+~ lvl0NPC
+
+if Level0.clear_condition == false and Level0.clear_variable1 == false and Level0.clear_variable2 == false
+	Unknown: [[Hello..|...|[shake rate=20 level=5][speed=10]Lies..[/speed][/shake] [speed=0.1]All[/speed] lies..|Yes?|[shake rate=20 level=5]Can't be...[/shake]|[shake rate=20 level=5]... [speed=6]You[/speed] [speed=0.7]promised..[/speed][/shake]|Do you need something?]]
+	- Who are you?
+		Unknown: [[Who he asks... Haha.|Shouldn't you be asking something else?|Aren't you more worried about your surroundings?|Maybe you should ask yourself|Maybe you should be more curious of where?]]
+		- Where am I?
+			Unknown: [next=0.5]Reality. 
+			Unknown: [[[shake rate=20 level=5]..yea, I'll wait here, they'll return.. They [/shake][shake rate=40 level=5]have[/shake][shake rate=20 level=5] to..[/shake] |[shake rate=40 level=5]They [/shake][shake rate=10 level=5]can't be gone, [/shake][shake rate=40 level=5]they[/shake][shake rate=10 level=5] promised [shake rate=40 level=5]they'd[/shake] [shake rate=10 level=10]always be here for me...[/shake] ]]
+			- Can you let me through?
+				Unknown: [next=1][shake rate=20 level=5]..It's all a bad dream, that's all.. [/shake][[And go where?|There's [speed=0.5]no where[/speed] else to go|[shake rate=20 level=5]We need to wait,[/shake] they'll be back soon... ]]
+				Unknown: ... Can't you [shake rate=20 level=5]see[/shake], everything is [shake rate=20 level=5]normal[/shake]?
+				if Level0.level0start == false
+					set  Level0.level0start = true
+					I guess I explore and look for out of place objects or scenes?
+				=> END
+			- Excuse me..
+				Unknown: [next=0.6]Does anything seem odd to you? 
+				Unknown: [speed=6]...[shake rate=20 level=5]LIES[/shake] Everything is [shake rate=20 level=5]perfectly[/shake] fine[/speed]
+				if Level0.level0start == false
+					set  Level0.level0start = true
+					It seems I should look for objects that are out of place?
+				=> END
+				
+if Level0.clear_condition == false and Level0.clear_variable1 == true or Level0.clear_variable2 == true and (Level0.clear1 == false and Level0.clear2 == false)
+	Unknown: It seems you have some thing to tell me?
+	- That dog...
+		if Level0.clear_variable1 == false
+			Unknown: Oh, is that so?
+			Unknown: Then where is the dog?
+			- Behind me
+				Unknown: Best you go look
+				=> END
+			- North
+				Unknown: Lucky guess.. But you should go check it out
+				=> END
+			- South
+				Unknown: [shake rate=20 level=5]She'll be back... [/shake]
+				=> END
+		if Level0.clear_variable1 == true
+			Unknown: What about the dog?
+			- It's different
+				Unknown: [next=0.3][shake rate=20 level=5] IT'S REAL[/shake]
+				Unknown: ... W-what's odd about it?
+				- It's fur is suppose to be white
+					Unknown: [speed=0.1]...[/speed] [wait=1][shake rate=20 level=5]Ah... Yes! yes it is![/shake]
+					=> END
+				- It's fur is suppose to be black
+					Unknown: [speed=0.1]...[/speed] [wait=1][shake rate=20 level=5]YES! We'll be here forever![/shake]
+					=> END
+				- It's fur is suppose to be brown
+					set Level0.clear1 = true
+					Unknown: ...
+					=> END
+				- It's fur is normally blue
+					Unknown: And they say I'm crazy...
+					=> END
+	- The kitchen table...
+		if Level0.clear_variable2 == false
+			Unknown: Did you even look at it?
+			=> END
+		if Level0.clear_variable2 == true
+			Unknown: Then what is wrong with the table?
+			- It's size
+				Unknown: And what of it?
+				- It's large
+					Unknown: Didn't use to feel that way..
+					=> END
+				- It's small
+					Unknown: [shake rate=20 level=5]Everything is perfectly normal... [/shake]
+					=> END
+			- It's suppose to have 4 legs
+				Unknown: ...
+				set Level0.clear2 = true
+				=> END
+			- Nothing!
+				Unknown: [shake rate=20 level=5]Exactly! [/shake]
+				=> END
+	-... => END
+if Level0.clear_condition == false and ((Level0.clear1 == true and Level0.clear2 == false) or (Level0.clear1 == false and Level0.clear2 == true))
+	Unknown: [next=1][[[shake rate=10 level=5]WHAT DID YOU DO?[/shake] |You did something... I think it's working]]
+	Unknown: [[You need to continue doing what ever you did.. |[shake rate=10 level=5] STOP! Please.. They-She'll come back..[/shake] ]]
+	- Can you tell me a little more of what this place is?
+		Unknown: ... It's [wait=1.5]nothing...
+		- ...
+			Unknown: I'm not ready.. to face reality yet..
+		=> END
+	- Can you tell me who you are?
+		Unknown: ...[wait=1.5]You need to stop asking me, and ask yourself..
+		- ...
+			Unknown: I don't think I can accept it.. Not yet..
+		=> END
+	- I'm ready to continue
+		if Level0.clear1 == false and Level0.clear_variable1 == true
+			Unknown: Then what is wrong with the dog?
+			- It's different
+				Unknown: [next=0.3][shake rate=20 level=5] IT'S REAL[/shake]
+				Unknown: ... W-what's odd about it?
+				- It's fur is suppose to be white
+					Unknown: [speed=0.1]...[/speed] [wait=1][shake rate=20 level=5]Ah... Yes! yes it is![/shake]
+					=> END
+				- It's fur is suppose to be black
+					Unknown: [speed=0.1]...[/speed] [wait=1][shake rate=20 level=5]YES! We'll be here forever![/shake]
+					=> END
+				- It's fur is suppose to be brown
+					set Level0.clear1 = true
+					Unknown: ...
+					=> END
+				- It's fur is normally blue
+					Unknown: And they say I'm crazy...
+					=> END
+		if Level0.clear1 == false and Level0.clear_variable1 == false
+			Unknown: Oh, is that so?
+			Unknown: Then where is the dog?
+			- Behind me
+				Unknown: Best you go look
+				=> END
+			- North
+				Unknown: Lucky guess.. But you should go check it out
+				=> END
+			- South
+				Unknown: [shake rate=20 level=5]She'll be back... [/shake]
+				=> END
+		if Level0.clear2 == false and Level0.clear_variable2 == true
+			Unknown: Then what is wrong with the table?
+			- It's size
+				Unknown: And what of it?
+				- It's large
+					Unknown: Didn't use to feel that way..
+					=> END
+				- It's small
+					Unknown: [shake rate=20 level=5]Everything is perfectly normal... [/shake]
+					=> END
+			- It's suppose to have 4 legs
+				Unknown: ...
+				set Level0.clear2 = true
+				=> END
+			- Nothing!
+				Unknown: [shake rate=20 level=5]Exactly! [/shake]
+				=> END
+		if Level0.clear2 == false and Level0.clear_variable2 == false
+			Unknown: Did you even look at it?
+			=> END
+if Level0.clear_condition == false and Level0.clear1 == true and Level0.clear2 == true
+	Unknown: [next=2][[...| .. I see...| ..it seems it's over..]].. It's over now, huh.. [[Can't hold on to the past anymore|I've let go of the illusions..]]
+	Unknown: I'll answer your questions now.
+	- Who are you?
+		Unknown: [next=1]I think [shake rate=10 level=5]you[/shake] already know.. 
+		Unknown: [next=0.3]I am you.
+		Unknown: Look, [[it's okay to feel lost, but denying won't make the pain go away |You're not alone, denying the truth only prolongs the suffering |Facing reality might seem daunting, but it's the first step towards healing. I'll always be with you every step.. |I know it's easy believing things will go back, but it won't change the truth.| I'll always be here to help you navigate through this, one step at a time. |You're not betraying anyone by acknowledging reality. Our feelings are valid, and it's okay to embrace them.]]
+		=> END
+	- What is this place?
+		Unknown: [next=1]This place is not real..
+		Unknown: [[ This place was created to help us cope.. |This place is created by your mind to keep you trapped..|It's like a mind prison, hiding the most painful truth]]
+		=> END
+	- I'm ready to move on now
+		Unknown: Are you sure? This will be the last time we talk...
+		- I am sure
+			Unknown: ...you're not alone. 
+			set Level0.clear_condition = true
+			=> END
+		- Maybe in a bit..
+			Unknown: Well.. I'll always be here until you're ready.
+			=> END
+			
+=> END
+
+~ lvl0dog
+
+if Level0.level0start == false
+	This looks like a dog.
+	=> END
+if Level0.level0start == true
+	This is my family's dog. 
+	[[That furry troublemaker? Mom found him wandering the streets and decided he needed a loving home. |We didn't know we were getting a dog until mom walked through the door with him. Best surprise ever. |The moment mom laid eyes on him, she knew he belonged with us. That dog's been her faithful companion ever since.]]
+	Our family dog was average sized of mixed breed.
+	We had to occasionally brush its fur..
+	Or it would leave a mess around the house
+	I remember we could pile its shedded [shake rate=2 level=2]brown[/shake] fur into a mound the size of the dog itself.
+	[[I'll never forget the time we got caught in the rain during an evening walk. Instead of rushing home, mom laughed as they danced in the downpour, the dog's tail wagging furiously. |I remember watching mom and the dog play fetch in the backyard. Mom would throw the ball, and the dog would dart after it with boundless energy, his tail wagging like crazy. | One time mom came home from work to see we had made a mess. I thought she would be mad, but instead she laughed as she chased us around the house. ]]
+	set Level0.clear_variable1 = true
+	=> END
+=> END
+
+~ lvl0table
+
+if Level0.level0start == false
+	This looks like a table.
+	=> END
+if Level0.level0start == true
+	This is our kitchen dinner table. 
+	set Level0.clear_variable2 = true
+	We all use to sit around it.. A cozy gathering place
+	But now it's too large in its emptiness
+	Mom use to tell us stories as we ate her warm meals..
+	She would always make sure we ate
+	... [wait=0.5]This table, once the heart of our home, now stands witness to the absence of our family, it's [shake rate=2 level=2]balance[/shake] lost..
+	Around this kitchen table, with mom's steady hand, every challenge seemed silly, every dream achievable.
+	[[Every morning, mom would be seated at the worn wooden table, a steaming cup of coffee in hand. It was there she planned our day, imparted her wisdom, and filled our hearts with love. |In the evenings, after a long day of work, with a tired smile, mom would recount stories, sharing laughter and tears with us around, the table serving as a sanctuary for our family's memories. |Through joy and sorrow, triumphs and challenges, mom was always there, her presence a reassuring anchor at the kitchen table. |Mom was always at the kitchen table, a stack of recipe books at her side. With flour-dusted hands and a smile on her face, she'd work her culinary magic, turning simple ingredients into feasts. |When life threw us curveballs, mom was always there to catch us at the kitchen table. With a listening ear and a sympathetic smile, she'd often offer words of encouragement. |Celebrations at the kitchen table were our tradition, spanning birthdays, holidays, and every joyous occasion in between. And at the heart of it all was mom, orchestrating the festivities with her unwavering love and infectious joy.]]
+	=> END
+=> END
+
+=> END
