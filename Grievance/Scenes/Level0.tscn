@@ -1,11 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhqxq3k6lnp6b"]
+[gd_scene load_steps=9 format=3 uid="uid://dhqxq3k6lnp6b"]
 
 [ext_resource type="Script" path="res://Scenes/Level0.cs" id="1_asost"]
 [ext_resource type="Texture2D" uid="uid://du2jxwnl57mpm" path="res://Img/Level0.png" id="1_nhmsb"]
 [ext_resource type="PackedScene" uid="uid://r0kab7o5khtn" path="res://Scenes/Player.tscn" id="2_fywko"]
 [ext_resource type="Texture2D" uid="uid://5n1tvg8twal0" path="res://Img/goal.png" id="3_e6tvo"]
+[ext_resource type="Shader" path="res://Scenes/MenuNode.gdshader" id="5_ggjp6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4r40h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7v541"]
+shader = ExtResource("5_ggjp6")
+shader_parameter/desatR = 0.0
+shader_parameter/desatG = 0.0
+shader_parameter/desatB = 0.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dtwce"]
 
 [node name="Level0" type="Node2D"]
 script = ExtResource("1_asost")
@@ -34,5 +43,11 @@ metadata/_edit_group_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(229, 283, 231, 456, 1086, 456, 1086, 281, 1223, 281, 1223, 584, 116, 586, 116, 128, 1225, 130, 1234, 281)
+
+[node name="GreyScaleShader" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_7v541")
+offset_right = 1308.0
+offset_bottom = 735.0
+texture = SubResource("ViewportTexture_dtwce")
 
 [connection signal="body_entered" from="Goal" to="." method="OnGoalBodyEntered"]
