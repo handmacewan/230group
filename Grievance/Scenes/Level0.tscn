@@ -5141,8 +5141,10 @@ layer_0/tile_data = PackedInt32Array(1703993, 1179652, 4, 1769529, 1179652, 5, 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_ee826")
-offset_right = 330.0
-offset_bottom = 231.0
+offset_left = -919.0
+offset_top = -877.0
+offset_right = 2078.0
+offset_bottom = 1948.0
 texture = SubResource("CanvasTexture_utnw4")
 
 [connection signal="body_entered" from="Goal" to="." method="OnGoalBodyEntered"]
