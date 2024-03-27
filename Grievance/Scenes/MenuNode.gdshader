@@ -2,6 +2,7 @@ shader_type canvas_item;
 uniform float desatR = 0.0;
 uniform float desatG = 0.0;
 uniform float desatB = 0.0;
+uniform float desatAll = 0.0;
 uniform sampler2D screen_texture : hint_screen_texture, filter_linear_mipmap;
 
 void vertex() {
@@ -22,6 +23,7 @@ void fragment() {
 	float r = (c.r-(c.g+c.b)/2.0) * desatR;
 	float g = (c.g-(c.r+c.b)/2.0) * desatG;
 	float b = (c.b-(c.g+c.r)/2.0) * desatB;
+	r = max (r, desatAll);
 	// apply desaturated colour modified by uniform variables
 	COLOR.rgb = mix(vec3(desat,desat,desat),c.rgb,max(max(r,g),b));
 }	

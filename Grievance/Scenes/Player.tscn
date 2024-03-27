@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://r0kab7o5khtn"]
+[gd_scene load_steps=11 format=3 uid="uid://r0kab7o5khtn"]
 
-[ext_resource type="Script" path="res://Scenes/Player.cs" id="1_3eyjd"]
+[ext_resource type="Script" path="res://Scenes/Player.gd" id="1_3eyjd"]
 [ext_resource type="Texture2D" uid="uid://d3tawomqjaly2" path="res://Img/GenericActorIdle0.png" id="1_31ihq"]
 [ext_resource type="Texture2D" uid="uid://dkloux6veip60" path="res://Img/GenericActorWalkD0.png" id="2_23e8n"]
 [ext_resource type="Texture2D" uid="uid://docqbkv6v2x0y" path="res://Img/GenericActorWalkD1.png" id="3_g6qrx"]
 [ext_resource type="Texture2D" uid="uid://psen8q6bc7gt" path="res://Img/GenericActorWalkR0.png" id="4_efasc"]
 [ext_resource type="Texture2D" uid="uid://fmjcal0l7k4g" path="res://Img/GenericActorWalkU0.png" id="5_j6s8y"]
 [ext_resource type="Texture2D" uid="uid://c3aj76rdstpo0" path="res://Img/GenericActorWalkU1.png" id="6_ngw17"]
+[ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="8_nqk1x"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uvrs1"]
 animations = [{
@@ -69,3 +70,4 @@ position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_am44y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("8_nqk1x")
