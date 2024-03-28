@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://15ci16jcnga0"]
+
+[ext_resource type="Script" path="res://MoveableBox.cs" id="1_bwun7"]
+[ext_resource type="Texture2D" uid="uid://bkqye5dmbu5m6" path="res://assets/box.png" id="2_xobfl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mqaa"]
+atlas = ExtResource("2_xobfl")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhsr7"]
+atlas = ExtResource("2_xobfl")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sn2r7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mqaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhsr7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23ni3"]
+size = Vector2(49, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jx8l"]
+size = Vector2(53, 51)
+
+[node name="MoveableBox" type="RigidBody2D"]
+mass = 0.1
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_bwun7")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sn2r7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -0.5)
+shape = SubResource("RectangleShape2D_23ni3")
+
+[node name="AreaPlayerEnter" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPlayerEnter"]
+position = Vector2(1.5, -0.5)
+shape = SubResource("RectangleShape2D_7jx8l")

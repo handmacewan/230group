@@ -1,4 +1,5 @@
 extends StaticBody2D
+signal level_clear
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,4 +17,5 @@ func NPClvl0():
 
 func level0clear():
 	if Level0.clear_condition == true:
+		level_clear.emit()
 		self.queue_free()

@@ -1,11 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://c32oiah77lhbs"]
+[gd_scene load_steps=10 format=3 uid="uid://c32oiah77lhbs"]
 
+[ext_resource type="Texture2D" uid="uid://cn4imd8fdfu2e" path="res://assets/crumpledpaperforeground.png" id="1_stmxr"]
 [ext_resource type="PackedScene" uid="uid://r0kab7o5khtn" path="res://Scenes/Player.tscn" id="1_xyaeg"]
+[ext_resource type="TileSet" uid="uid://btkwcexmbrhn" path="res://Scenes/Level0.tres" id="2_02wvs"]
 [ext_resource type="Texture2D" uid="uid://5n1tvg8twal0" path="res://Img/goal.png" id="2_buas0"]
+[ext_resource type="PackedScene" uid="uid://15ci16jcnga0" path="res://Scenes/moveable_box.tscn" id="5_60lx8"]
+[ext_resource type="Shader" path="res://Scenes/MenuNode.gdshader" id="5_l4rrw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xg3j"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ci8nx"]
+shader = ExtResource("5_l4rrw")
+shader_parameter/desatR = 0.0
+shader_parameter/desatG = 0.0
+shader_parameter/desatB = 0.0
+shader_parameter/desatAll = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_72pp4"]
+
 [node name="Node2D" type="Node2D"]
+
+[node name="PaperBackgnd" type="Sprite2D" parent="."]
+position = Vector2(63, 3)
+texture = ExtResource("1_stmxr")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_02wvs")
+format = 2
 
 [node name="CharBody2D" parent="." instance=ExtResource("1_xyaeg")]
 
@@ -23,3 +44,16 @@ texture = ExtResource("2_buas0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_2xg3j")
+
+[node name="Boxes" type="Node2D" parent="."]
+
+[node name="MoveableBox" parent="Boxes" instance=ExtResource("5_60lx8")]
+position = Vector2(133, 19)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ci8nx")
+offset_left = -4292.0
+offset_top = -494.0
+offset_right = -1295.0
+offset_bottom = 2331.0
+texture = SubResource("CanvasTexture_72pp4")
