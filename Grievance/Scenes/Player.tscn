@@ -55,10 +55,11 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_am44y"]
 radius = 16.0
-height = 94.0
+height = 70.0
 
 [node name="CharBody2D" type="CharacterBody2D"]
 collision_layer = 129
+collision_mask = 3
 script = ExtResource("1_3eyjd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -66,7 +67,7 @@ sprite_frames = SubResource("SpriteFrames_uvrs1")
 animation = &"walkR"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(0, 20)
 shape = SubResource("CapsuleShape2D_am44y")
 
 [node name="Camera2D" type="Camera2D" parent="."]

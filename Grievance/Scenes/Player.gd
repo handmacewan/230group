@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 300
 var stop = false
+var push_force = 20.0
 var NPC_in_range = false
 var npcdog_in_range = false
 var table_in_range = false
@@ -54,6 +55,10 @@ func _physics_process(delta):
 	if stop == false:
 		get_input()
 		move_and_slide()
+		for i in get_slide_collision_count():
+			var c = get_slide_collision(i)
+			if c.get_collider() is RigidBody2D:
+				c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
 
 func _on_detection_area_body_entered(body):
