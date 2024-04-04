@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://c32oiah77lhbs"]
+[gd_scene load_steps=20 format=3 uid="uid://c32oiah77lhbs"]
 
+[ext_resource type="Script" path="res://Scenes/Level1.gd" id="1_2lt4q"]
 [ext_resource type="Texture2D" uid="uid://cn4imd8fdfu2e" path="res://assets/crumpledpaperforeground.png" id="1_stmxr"]
 [ext_resource type="PackedScene" uid="uid://r0kab7o5khtn" path="res://Scenes/Player.tscn" id="1_xyaeg"]
 [ext_resource type="TileSet" uid="uid://btkwcexmbrhn" path="res://Scenes/Level0.tres" id="2_02wvs"]
@@ -30,16 +31,23 @@ size = Vector2(58, 60)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xg3j"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ci8nx"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_t5f21"]
+radius = 69.029
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqbmj"]
+size = Vector2(28, 68)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j7tct"]
 shader = ExtResource("5_l4rrw")
-shader_parameter/desatR = 0.0
-shader_parameter/desatG = 0.0
+shader_parameter/desatR = 0.3
+shader_parameter/desatG = 1.0
 shader_parameter/desatB = 0.0
 shader_parameter/desatAll = 0.0
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_72pp4"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_sgmir"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_2lt4q")
 
 [node name="PaperBackgnd" type="Sprite2D" parent="."]
 position = Vector2(-9, -38)
@@ -171,10 +179,39 @@ position = Vector2(546, -185)
 [node name="MoveableBox9" parent="Boxes" instance=ExtResource("5_60lx8")]
 position = Vector2(546, -129)
 
+[node name="MendDetectorArea" type="Area2D" parent="."]
+position = Vector2(-80, 67)
+collision_layer = 0
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MendDetectorArea"]
+shape = SubResource("CircleShape2D_t5f21")
+
+[node name="TriggerBreak" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 130
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerBreak"]
+position = Vector2(389, 117)
+shape = SubResource("RectangleShape2D_uqbmj")
+
+[node name="BreakTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="MendTimer" type="Timer" parent="."]
+wait_time = 12.0
+one_shot = true
+
 [node name="TextureRect" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_ci8nx")
-offset_left = -4292.0
-offset_top = -494.0
-offset_right = -1295.0
-offset_bottom = 2331.0
-texture = SubResource("CanvasTexture_72pp4")
+z_index = 5
+material = SubResource("ShaderMaterial_j7tct")
+offset_left = -1384.0
+offset_top = -1057.0
+offset_right = 1613.0
+offset_bottom = 1768.0
+texture = SubResource("CanvasTexture_sgmir")
+
+[connection signal="body_entered" from="TriggerBreak" to="." method="_on_trigger_break_body_entered"]
+[connection signal="timeout" from="BreakTimer" to="." method="_on_break_timer_timeout"]
+[connection signal="timeout" from="MendTimer" to="." method="_on_mend_timer_timeout"]

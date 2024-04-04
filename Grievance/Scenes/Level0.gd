@@ -10,7 +10,7 @@ var level0start = false
 var initializetutorial = true
 
 func _on_level_clear():
-	$TextureRect.material.set_shader_parameter("desatAll", 1.0)
+	$TextureRect.material.set_shader_parameter("desatAll", 0.4)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
