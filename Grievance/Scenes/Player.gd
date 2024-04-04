@@ -1,9 +1,16 @@
 extends CharacterBody2D
 
 @export var speed = 300
+var stop = false
+var push_force = 20.0
 var NPC_in_range = false
 var npcdog_in_range = false
 var table_in_range = false
+
+func on_stop_control():
+	stop = true
+func on_start_control():
+	stop = false
 
 func get_input():
 	var input_direction = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
@@ -24,6 +31,7 @@ func get_input():
 		$AnimatedSprite2D.play("idle")
 		
 func _physics_process(delta):
+	## this is the physics engine code, game logic should be in _process
 	if Level0.initializetutorial == true:
 		DialogueManager.show_example_dialogue_balloon(load("res://script/lvl0.dialogue"), "tutorial0")
 		Level0.initializetutorial = false
@@ -32,7 +40,7 @@ func _physics_process(delta):
 		if Input.is_action_pressed("ui_accept"):
 			DialogueManager.show_example_dialogue_balloon(load("res://script/lvl0.dialogue"), "lvl0NPC")
 			NPC_in_range = false
-			return
+			return ## why return? this function is called every physics tick
 	if npcdog_in_range == true:
 		if Input.is_action_pressed("ui_accept"):
 			DialogueManager.show_example_dialogue_balloon(load("res://script/lvl0.dialogue"), "lvl0dog")
@@ -43,8 +51,14 @@ func _physics_process(delta):
 			DialogueManager.show_example_dialogue_balloon(load("res://script/lvl0.dialogue"), "lvl0table")
 			table_in_range = false
 			return
-	get_input()
-	move_and_slide()
+			
+	if stop == false:
+		get_input()
+		move_and_slide()
+		for i in get_slide_collision_count():
+			var c = get_slide_collision(i)
+			if c.get_collider() is RigidBody2D:
+				c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
 
 func _on_detection_area_body_entered(body):
