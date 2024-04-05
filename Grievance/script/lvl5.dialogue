@@ -1,0 +1,16 @@
+~ InitialTalk
+
+if Level5.initialtalk == false
+	Player: ...
+	Player: Hey mom..
+	Player: I brought you some flowers today.
+	- Place Flower
+		set Level5.initialtalk = true
+		Player: I just wanted to let you know
+		Player: ... I'm okay now.
+		=> END
+if Level5.initialtalk == true
+	Player: [[ Hey Mom, it's me again. I wish you were here so I could tell you about everything that's been happening. Your absence leaves a void that nothing can fill. |I miss your laugh, Mom. It echoes in my mind as I stand here, surrounded by silence. I hope you're at peace wherever you are. |Life feels a bit emptier without you, Mom. But I find strength in the memories we shared. Thank you for everything.| I'm trying my best to navigate this world without you, Mom. But some days are harder than others. Your love still guides me through. |I found your old recipe book the other day. I'll never be able to recreate your dishes like you did, but I'll cherish the memories of cooking with you forever. |Do you remember the time we went on that road trip? I think about it often. I wish I could turn back time and relive those moments with you. |I wish I could hear your voice one more time, Mom. Just to hear you say everything will be okay. I miss you more than words can express.| Mom, life feels different without you around. But as I visit your tomb today, I'm starting to accept that you're in a better place. Your absence is a constant reminder of the love we shared, and I'm learning to carry your spirit with me in everything I do.| Hey Mom, it's me again. I couldn't stay away. Standing here by your grave, I'm starting to accept that life will never be the same without you. Your absence is a constant ache in my heart, but I'm learning to live with it. Your love is my guiding light. |Mom, the world seems a little dimmer without you in it. But as I visit your tomb today, I'm starting to accept that your light lives on in me. Your love continues to shine brightly, guiding me through life's darkest moments. I'm grateful for every moment we shared. |It's been a journey, Mom. One filled with tears, laughter, and everything in between. As I stand here by your grave, I'm starting to accept that life is just a series of moments. Some joyful, some sorrowful. But through it all, your love remains constant. And for that, I am eternally grateful. |Mom, I miss you more than words can say. But as I stand here, I'm finding peace in knowing you're watching over me. |It's not easy being here without you, Mom. But with each visit, I'm starting to accept that your love will always be with me. |Mom, the pain of losing you will never fully fade. But I'm learning to accept that life goes on, and so does your love. |As I visit your grave today, Mom, I'm finding comfort in the memories we shared. Your love still surrounds me. |I wish you were here, Mom. But as I stand by your grave, I'm beginning to accept that you're in a place of eternal peace. |It's hard to believe it's been this long, Mom. But as I visit your tomb, I'm starting to accept that your memory will live on forever. |I talk to you every day, Mom. Even though you're not here, I'm learning to accept that you're always listening. |Mom, I feel your presence here. It's comforting to know that even in death, your love remains. ]]
+	=> END
+	
+=> END

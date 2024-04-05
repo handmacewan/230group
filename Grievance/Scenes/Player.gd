@@ -6,6 +6,7 @@ var push_force = 20.0
 var NPC_in_range = false
 var npcdog_in_range = false
 var table_in_range = false
+var tomb_in_range = false
 
 func on_stop_control():
 	stop = true
@@ -52,6 +53,11 @@ func _physics_process(delta):
 			table_in_range = false
 			return
 			
+	if tomb_in_range == true:
+		if Input.is_action_pressed("ui_accept"):
+			DialogueManager.show_example_dialogue_balloon(load("res://script/lvl5.dialogue"), "InitialTalk")
+			tomb_in_range = false
+				
 	if stop == false:
 		get_input()
 		move_and_slide()
@@ -68,6 +74,8 @@ func _on_detection_area_body_entered(body):
 		npcdog_in_range = true
 	if body.has_method("table"):
 		table_in_range = true
+	if body.has_method("tomb"):
+		tomb_in_range = true
 
 
 func _on_detection_area_body_exited(body):
@@ -77,3 +85,5 @@ func _on_detection_area_body_exited(body):
 		npcdog_in_range = false
 	if body.has_method("table"):
 		table_in_range = false
+	if body.has_method("tomb"):
+		tomb_in_range = false

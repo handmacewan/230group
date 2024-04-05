@@ -66,3 +66,8 @@ func _on_mend_timer_timeout():
 	break_enabled = false
 	mend_enabled = true
 	$FinishBarrier/CollisionPolygon2D.disabled = true
+
+
+
+func _on_goal_body_entered(body):
+	get_tree().change_scene_to_file("res://Scenes/Level2.tscn")

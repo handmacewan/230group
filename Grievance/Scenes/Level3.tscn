@@ -1,0 +1,125 @@
+[gd_scene load_steps=18 format=3 uid="uid://6h72jsuxt8dk"]
+
+[ext_resource type="Script" path="res://Scenes/Level3.gd" id="1_t0gld"]
+[ext_resource type="Texture2D" uid="uid://cn4imd8fdfu2e" path="res://assets/crumpledpaperforeground.png" id="2_urddx"]
+[ext_resource type="Texture2D" uid="uid://5n1tvg8twal0" path="res://Img/goal.png" id="11_l5g7o"]
+[ext_resource type="PackedScene" uid="uid://r0kab7o5khtn" path="res://Scenes/Player.tscn" id="12_4e6t6"]
+[ext_resource type="Texture2D" uid="uid://bpkrvwymmtmsk" path="res://Img/GenericNPCIdle0.png" id="14_7r6d7"]
+[ext_resource type="Shader" path="res://Scenes/MenuNode.gdshader" id="18_yma3w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4r40h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aq6gd"]
+radius = 50.2195
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3j6p"]
+size = Vector2(1476, 177)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pki5j"]
+size = Vector2(1451.5, 94)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25w36"]
+size = Vector2(73, 696)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1t22"]
+size = Vector2(53, 452.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utcm4"]
+size = Vector2(53, 220.25)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jevnt"]
+radius = 17.0
+height = 98.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4r0vy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_7r6d7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ee826"]
+shader = ExtResource("18_yma3w")
+shader_parameter/desatR = 0.3
+shader_parameter/desatG = 1.0
+shader_parameter/desatB = 0.0
+shader_parameter/desatAll = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_utnw4"]
+
+[node name="Level3" type="Node2D"]
+script = ExtResource("1_t0gld")
+
+[node name="PaperBackgnd" type="Sprite2D" parent="."]
+position = Vector2(718, 363)
+texture = ExtResource("2_urddx")
+
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(1045, 376)
+collision_layer = 0
+collision_mask = 128
+metadata/_edit_group_ = true
+
+[node name="GoalSprite" type="Sprite2D" parent="Goal"]
+texture = ExtResource("11_l5g7o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource("CircleShape2D_4r40h")
+
+[node name="Player" parent="." instance=ExtResource("12_4e6t6")]
+position = Vector2(823, 362)
+
+[node name="detection_area" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/detection_area"]
+position = Vector2(-1, 8)
+shape = SubResource("CircleShape2D_aq6gd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(682, 119.5)
+shape = SubResource("RectangleShape2D_g3j6p")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(657.75, 672)
+shape = SubResource("RectangleShape2D_pki5j")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(138, 378)
+shape = SubResource("RectangleShape2D_25w36")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(987, 79.25)
+shape = SubResource("RectangleShape2D_v1t22")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(987, 551.125)
+shape = SubResource("RectangleShape2D_utcm4")
+
+[node name="NPC" type="StaticBody2D" parent="."]
+position = Vector2(922, 481)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
+position = Vector2(-1, 12)
+shape = SubResource("CapsuleShape2D_jevnt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPC"]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_4r0vy")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ee826")
+offset_left = -836.0
+offset_top = -691.0
+offset_right = 2161.0
+offset_bottom = 2134.0
+texture = SubResource("CanvasTexture_utnw4")
+
+[connection signal="body_entered" from="Goal" to="." method="OnGoalBodyEntered"]
+[connection signal="body_entered" from="Player/detection_area" to="Player" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Player/detection_area" to="Player" method="_on_detection_area_body_exited"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8jlf4nfk7f0i"]
+[gd_scene load_steps=6 format=3 uid="uid://c8jlf4nfk7f0i"]
 
 [ext_resource type="Script" path="res://Scenes/MenuNode.cs" id="1_878ek"]
+[ext_resource type="Texture2D" uid="uid://cn4imd8fdfu2e" path="res://assets/crumpledpaperforeground.png" id="2_37i8d"]
 
 [sub_resource type="Animation" id="Animation_xfgus"]
 resource_name = "MenuFadeBlack"
@@ -41,27 +42,40 @@ _data = {
 [node name="Node" type="Node"]
 script = ExtResource("1_878ek")
 
+[node name="PaperBackgnd" type="Sprite2D" parent="."]
+position = Vector2(718, 363)
+texture = ExtResource("2_37i8d")
+
 [node name="StartButton" type="Button" parent="."]
 offset_left = 185.0
 offset_top = 611.0
 offset_right = 410.0
 offset_bottom = 686.0
 theme_override_font_sizes/font_size = 25
-text = "Start."
+text = "START"
 
-[node name="QuitButton" type="Button" parent="."]
+[node name="SettingsButton" type="Button" parent="."]
 offset_left = 500.0
 offset_top = 611.0
 offset_right = 725.0
 offset_bottom = 686.0
 theme_override_font_sizes/font_size = 25
-text = "Quit."
+text = "SETTINGS"
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 815.0
+offset_top = 611.0
+offset_right = 1040.0
+offset_bottom = 686.0
+theme_override_font_sizes/font_size = 25
+text = "QUIT"
 
 [node name="TitleLabel" type="Label" parent="."]
 offset_left = 34.0
 offset_top = 461.0
 offset_right = 291.0
 offset_bottom = 530.0
+theme_override_colors/font_color = Color(0.137255, 0.137255, 0.137255, 1)
 theme_override_font_sizes/font_size = 50
 text = "Grievance."
 
